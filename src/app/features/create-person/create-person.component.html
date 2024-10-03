@@ -1,0 +1,59 @@
+<div>
+  <form [formGroup]="personForm">
+    <div class="form-row ">
+      <div class="form-group flex-item">
+        <label for="fullName">Personas Asociadas:</label>
+        <br>
+        <div class="input-group">
+          <input id="fullName" formControlName="fullName" placeholder="Nombre completo" />
+          <i class="fas fa-user icon"></i>
+        </div>
+        <div *ngIf="personForm.get('fullName')?.invalid && personForm.get('fullName')?.touched" class="error">
+          <small *ngIf="personForm.get('fullName')?.errors?.['required']">El nombre es requerido.</small>
+          <small *ngIf="personForm.get('fullName')?.errors?.['minlength']">Longitud mínima de 5 caracteres.</small>
+        </div>
+        <br>
+        <div class="input-group">
+          <input type="number" id="fullName" formControlName="age" placeholder="Edad" />
+
+        </div>
+        <div *ngIf="personForm.get('age')?.invalid && personForm.get('age')?.touched" class="error">
+          <small *ngIf="personForm.get('age')?.errors?.['required']">La edad es requerida.</small>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+  <app-manage-skills [isShow]="showSkills" (skillsChanged)="onSkillsChanged($event)"></app-manage-skills>
+  <br>
+  <div class="table-container" *ngIf="persons.length > 0">
+    <p-table [value]="persons" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Persona</th>
+          <th>Edad</th>
+          <th>Habilidades</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-person let-i>
+        <tr>
+          <td>{{ person.fullName }}</td>
+          <td>{{ person.age }}</td>
+          <td>
+            <div>
+              <p-listbox [options]="person.skills" [listStyle]="{'max-height': '200px'}"></p-listbox>
+            </div>
+          </td>
+          <td>
+            <p-button label="Eliminar" severity="danger" (click)="deletePerson(person,i)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <br>
+  <div class="form-group flex-item" style="align-content: center;">
+    <p-button label="Añadir persona" icon="pi pi-check" (click)="saveData()" />
+  </div>
+</div>

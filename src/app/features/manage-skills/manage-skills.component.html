@@ -1,0 +1,35 @@
+<div>
+  <form [formGroup]="skillForm">
+    <div class="form-row ">
+      <div class="form-group flex-item ">
+        <label for="skillName">Habilidades:</label>
+        <div class="input-group">
+          <input id="skillName" formControlName="skillName" placeholder="Ingresar habilidad" />
+          <i class="fa fa-superpowers icon"></i>
+
+        </div>
+      </div>
+      <div class="form-group flex-item mt-4" style="align-content: center; margin-top: 20px; margin-left: 0px;">
+        <p-button label="Añadir habilidad" icon="pi pi-check" [disabled]="skillForm.invalid" (click)="addSkill()" />
+      </div>
+    </div>
+  </form>
+  <div class="table-container" *ngIf="skills.length > 0 && showTable">
+    <p-table [value]="skills" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Habilidad</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-skill let-i>
+        <tr>
+          <td>{{ skill }}</td>
+          <td>
+            <p-button label="Eliminar Habilidad" severity="danger" (click)="deleteSkill(skill,i)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

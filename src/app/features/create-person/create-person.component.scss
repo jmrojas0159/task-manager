@@ -1,0 +1,124 @@
+hr {
+  flex: 1;
+  border: 0;
+  border-top: 1px solid #3f51b5;
+  margin: 0 10px;
+  /* Espaciado alrededor de la línea */
+}
+
+.btnPeople {
+
+  color: white;
+  padding: 30px 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  /* Espaciado entre elementos */
+  flex-wrap: wrap;
+  /* Permite que se ajusten en pantallas más pequeñas */
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.table-container h3 {
+  margin-top: 20px;
+  color: #3f51b5;
+}
+
+.flex-item {
+  flex: 1;
+  /* Cada campo tomará un ancho igual */
+  min-width: 180px;
+  /* Mínimo ancho para los campos */
+  margin-right: 10px;
+  /* Espaciado entre los campos */
+}
+
+.flex-item:last-child {
+  margin-right: 0;
+  /* Elimina el margen derecho del último elemento */
+}
+
+h2 {
+  text-align: center;
+  color: #3f51b5;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group {
+  position: relative;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 10px 10px 40px;
+  /* Espacio para el icono */
+  font-size: 1rem;
+}
+
+textarea {
+  height: 100px;
+  padding: 10px 10px 10px 40px;
+  /* Espacio para el icono */
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
+  /* Ajusta según sea necesario */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #3f51b5;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonDelet {
+  color: white;
+  background-color: #f44336;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 20%;
+  margin-top: 10px;
+
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}

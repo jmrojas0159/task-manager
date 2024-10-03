@@ -1,0 +1,48 @@
+<div class="form-container">
+
+  <p-button  icon="pi pi-arrow-left" (click)="backList()" />
+  <br>
+  <br>
+  <br>
+  <form [formGroup]="taskForm">
+    <div class="form-row">
+      <div class="form-group flex-item">
+        <div style="text-align: center;">
+          <label for="name">Crear Nueva Tarea</label>
+        </div>
+        <br>
+        <br>
+        <label for="date">Nombre de la Tarea</label>
+        <div class="input-group">
+          <input id="name" formControlName="name" placeholder="Ingresar nombre" />
+          <i class="fas fa-user icon"></i>
+        </div>
+        <div *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched" class="error">
+          <small *ngIf="taskForm.get('name')?.errors?.['required']">El nombre es requerido.</small>
+          <small *ngIf="taskForm.get('name')?.errors?.['minlength']">Longitud mínima de 5 caracteres.</small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="date">Fecha Limite:</label>
+        <div class="input-group">
+          <input id="date" type="date" formControlName="date" [min]="minDate" />
+          <i class="fas fa-calendar-alt icon"></i>
+        </div>
+        <div *ngIf="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" class="error">
+          <small *ngIf="taskForm.get('date')?.errors?.['required']">Fecha es requerida.</small>
+          <small *ngIf="taskForm.get('date')?.errors?.['matDatepickerMin']">La fecha no puede ser anterior a hoy.</small>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+  <app-create-person (personsChanged)="onPersonsChanged($event)"></app-create-person>
+  <br>
+
+  <div class="form-group" style="text-align: center;">
+    <p-button label="Guardar Tarea" icon="pi pi-check" (click)="saveData()"></p-button>
+  </div>
+</div>
+

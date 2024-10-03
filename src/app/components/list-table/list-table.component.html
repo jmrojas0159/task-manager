@@ -1,0 +1,63 @@
+<div class="task-container">
+
+  <div class="filter-options" style="margin-bottom: 1rem;">
+    <button pButton label="Todas" icon="pi pi-list" (click)="filterTasks('all')"
+      [class.active]="filterOption === 'all'" class="filter-button"></button>
+    <button pButton label="Pendientes" icon="pi pi-times" (click)="filterTasks('completed')"
+      [class.active]="filterOption === 'completed'" class="filter-button"></button>
+    <button pButton label="Completadas" icon="pi pi-check" (click)="filterTasks('pending')"
+      [class.active]="filterOption === 'pending'" class="filter-button"></button>
+  </div>
+  <br>
+
+  <div class="add-button ">
+    <button pButton label="Agregar Tarea" icon="pi pi-plus" (click)="addTask()" class="add-task-button"></button>
+  </div>
+
+  <br>
+  <br>
+
+  <p-table [value]="filteredData" [paginator]="true" [rows]="10" [tableStyle]="{'min-width': '500px'}"
+    class="task-table" dataKey="id">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Tarea</th>
+        <th>Personas</th>
+        <th>Completada</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-task>
+      <tr [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>
+          <div *ngFor="let person of task.people" class="person-info">
+
+            <h4>Nombre: {{ person.fullName }}</h4>
+            <h4>Habilidades:</h4>
+            <ul>
+              <li *ngFor="let skill of person.skills"> {{ skill }}</li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <p-checkbox [(ngModel)]="task.completed" [binary]="true" [disabled]="!task.completed"></p-checkbox>
+        </td>
+        <td>
+          <button pButton icon="pi pi-trash" (click)="deleteTask(task.id)" class="delete-button"
+            style="border: none; background: none;" aria-label="Eliminar tarea"></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="empty">
+      <tr>
+        <td colspan="5" style="text-align: center;">No hay tareas disponibles.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

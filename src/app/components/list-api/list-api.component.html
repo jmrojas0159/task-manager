@@ -1,0 +1,7 @@
+<h1>Lista de Tareas</h1>
+<ul>
+  <li *ngFor="let tarea of tareas">
+    <input type="checkbox" [checked]="tarea.completed" disabled />
+    {{ tarea.title }}
+  </li>
+</ul>
